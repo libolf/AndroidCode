@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidCode</string>
+    <string name="main_button_statusbar">多页面的沉浸式状态栏</string>
+    <string name="main_button_animation">动画</string>
 </resources>

@@ -9,13 +9,31 @@
         android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name=".provider.TestContentProvider"
+            android:authorities="com.libok.androidcode"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".service.TestService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".activity.StatusBarActivity"
+            android:theme="@style/NoWindowTitle"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".activity.AnimationActivity" />
+        <activity android:name=".activity.GifActivity" />
+        <activity android:name=".activity.MVPActivity" />
     </application>
 
 </manifest>
