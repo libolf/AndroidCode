@@ -9,13 +9,6 @@
         android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <provider
             android:name=".provider.TestContentProvider"
             android:authorities="com.libok.androidcode"
@@ -28,12 +21,77 @@
             android:exported="true" />
 
         <activity
+            android:name=".activity.HomeActivity"
+            android:label="HomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="Activity/ABC/MainActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".activity.StatusBarActivity"
+            android:label="Activity/ABC/SActivity"
             android:theme="@style/NoWindowTitle"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".activity.AnimationActivity" />
-        <activity android:name=".activity.GifActivity" />
-        <activity android:name=".activity.MVPActivity" />
+            android:windowSoftInputMode="adjustPan|stateHidden">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.AnimationActivity"
+            android:label="Activity/DE/AnimationActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.GifActivity"
+            android:label="Activity/DE/GifActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.MVPActivity"
+            android:label="Activitys/MVPActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.LifecycleActivity"
+            android:label="LifeCycle">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

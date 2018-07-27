@@ -64,14 +64,6 @@ public class AppInfo implements Serializable{
         return this;
     }
 
-//    @Override
-//    public String toString() {
-//        return "AppInfo{" +
-//                "mAppLabel='" + mAppLabel + '\'' +
-//                ", mAppPackageName='" + mAppPackageName + '\'' +
-//                '}';
-//    }
-
     @Override
     public String toString() {
         return "AppInfo{" +
