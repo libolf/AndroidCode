@@ -2,33 +2,34 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.libok.androidcode">
 
+    <!-- 在其他应用上显示 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 读写存储 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 读取联系人 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
+        android:name=".core.LApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <provider
-            android:name=".provider.TestContentProvider"
-            android:authorities="com.libok.androidcode"
-            android:enabled="true"
-            android:exported="true" />
-
-        <service
-            android:name=".service.TestService"
-            android:enabled="true"
-            android:exported="true" />
 
         <activity
             android:name=".activity.HomeActivity"
             android:label="HomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity
@@ -84,14 +85,114 @@
         </activity>
 
         <activity
-            android:name=".activity.LifecycleActivity"
-            android:label="LifeCycle">
+            android:name=".activity.QueueWriteActivity"
+            android:label="QueueWriteActivity">
             <intent-filter>
                 <action android:name="AndroidCode" />
 
                 <category android:name="code" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.DialogActivity"
+            android:label="DialogActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.LifecycleActivity"
+            android:label="LifecycleActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.SkipActivity"
+            android:label="SkipActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.ContentProviderActivity"
+            android:label="ContentProviderActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.QRCodeActivity"
+            android:label="QRCodeActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.ConstraintLayoutActivity"
+            android:label="ConstraintLayoutActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.SocketActivity"
+            android:label="SocketActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.RevealEffectActivity"
+            android:label="RevealEffectActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name=".provider.TestContentProvider"
+            android:authorities="com.libok.androidcode"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".service.TestService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".service.MessengerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":messenger" />
     </application>
 
 </manifest>

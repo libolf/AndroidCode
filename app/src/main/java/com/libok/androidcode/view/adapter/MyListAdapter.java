@@ -4,15 +4,15 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
  * @author liboK
  */
 public class MyListAdapter<T, H extends MyListAdapter.ViewHolder> extends BaseAdapter {
+
+    private static final String TAG = "MyListAdapter";
 
     private List<T> mDatas;
     private ViewCreator<T, H> mViewCreator;

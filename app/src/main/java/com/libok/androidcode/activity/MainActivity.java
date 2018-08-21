@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.libok.androidcode.R;
-import com.libok.androidcode.model.AppInfo;
+import com.libok.androidcode.bean.AppInfo;
 import com.libok.androidcode.util.L;
 import com.xiaomi.market.sdk.XiaomiUpdateAgent;
 

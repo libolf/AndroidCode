@@ -1,14 +1,11 @@
-package com.libok.androidcode.model;
+package com.libok.androidcode.bean;
 
 import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
 
 /**
- * @author liboK
- * @date 2018/6/25 0025 3:10
- * @e-mail libolf@outlook.com
- * @description APP信息类
+ * @author liboK 2018/6/25 下午 3:10
  */
 public class AppInfo implements Serializable{
 
@@ -32,36 +29,32 @@ public class AppInfo implements Serializable{
         return mAppLabel;
     }
 
-    public AppInfo setAppLabel(String appLabel) {
+    public void setAppLabel(String appLabel) {
         mAppLabel = appLabel;
-        return this;
     }
 
     public String getAppPackageName() {
         return mAppPackageName;
     }
 
-    public AppInfo setAppPackageName(String appPackageName) {
+    public void setAppPackageName(String appPackageName) {
         mAppPackageName = appPackageName;
-        return this;
     }
 
     public Drawable getAppIcon() {
         return mAppIcon;
     }
 
-    public AppInfo setAppIcon(Drawable appIcon) {
+    public void setAppIcon(Drawable appIcon) {
         mAppIcon = appIcon;
-        return this;
     }
 
     public boolean isAppSelected() {
         return mAppSelected;
     }
 
-    public AppInfo setAppSelected(boolean appSelected) {
+    public void setAppSelected(boolean appSelected) {
         mAppSelected = appSelected;
-        return this;
     }
 
     @Override

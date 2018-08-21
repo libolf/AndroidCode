@@ -17,14 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.libok.androidcode.R;
-import com.libok.androidcode.model.AppLabelBean;
+import com.libok.androidcode.bean.AppLabelBean;
+import com.libok.androidcode.bean.IntentBean;
+import com.libok.androidcode.core.LApplication;
+import com.libok.androidcode.core.ActivityLabelTree;
 import com.libok.androidcode.util.StatusBarUtil;
 import com.libok.androidcode.view.adapter.MyListAdapter;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,18 +34,15 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private static final String TAG = "HomeActivity";
 
-    public static int count = 0;
-
     @BindView(R.id.home_list)
     ListView mHomeList;
     @BindView(R.id.home_recycler)
     RecyclerView mHomeRecycler;
     @BindView(R.id.top_toolbar)
     Toolbar mTopToolbar;
-    private int[] ids = {R.drawable.ic_launcher, R.drawable.ic_launcher_round};
     private List<String> mDatas;
-    private MyListAdapter mAdapter;
-    private Map<String, List<AppLabelBean>> mAppLabelBeanMap;
+    private MyListAdapter<String, TestViewHolder> mAdapter;
+    private List<AppLabelBean<IntentBean>> mCurrentLabelBeanList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,84 +53,89 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         setSupportActionBar(mTopToolbar);
         getSupportActionBar().setTitle("Coder");
 
-        String qwe = "a";
-        String[] split = qwe.split("/");
-        for (String s : split) {
-            Log.e(TAG, "onCreate: qwe  " + s);
-        }
+        LApplication.addActivity(this);
 
         Intent intent = new Intent("AndroidCode", null);
         intent.addCategory("code");
         PackageManager packageManager = getPackageManager();
         List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
-        Log.e(TAG, "onCreate: " + resolveInfos.size());
-        String header = "";
-        mAppLabelBeanMap = new LinkedHashMap<>();
+        Log.i(TAG, "onCreate: Activity size is " + resolveInfos.size());
+
+        mCurrentLabelBeanList = new ArrayList<>();
+        ActivityLabelTree<IntentBean> tree = new ActivityLabelTree<>(null, "first", null);
         for (ResolveInfo resolveInfo : resolveInfos) {
             String label = resolveInfo.loadLabel(packageManager).toString();
-            AppLabelBean appLabelBean = new AppLabelBean(label.split("/"), resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
-            Log.e(TAG, "onCreate: " + appLabelBean.toString() + " " + appLabelBean.getLabelSplite().length);
-            if (!mAppLabelBeanMap.containsKey(appLabelBean.getLabelSplite()[0])) {
-                List<AppLabelBean> list = new ArrayList<>();
-                list.add(appLabelBean);
-                mAppLabelBeanMap.put(appLabelBean.getLabelSplite()[0], list);
-            } else {
-                mAppLabelBeanMap.get(appLabelBean.getLabelSplite()[0]).add(appLabelBean);
+            IntentBean intentBean = new IntentBean(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
+            Log.i(TAG, "onCreate: " + label + " " + intentBean.toString());
+            String[] split1 = label.split("/");
+            String path = "";
+            for (int i = 0; i < split1.length; i++) {
+                path += split1[i] + "/";
+                AppLabelBean<IntentBean> appLabelBean = new AppLabelBean<>(null, split1[i], path, (i + 1), null);
+                if (i == split1.length - 1) {
+                    appLabelBean.setData(intentBean);
+                }
+                tree.add(appLabelBean);
             }
-
-//            Log.e(TAG, "onCreate: " + label);
-//            if (header.length() == 0) {
-//                String[] split = label.split("/");
-//                for (String s : split) {
-//                    Log.e(TAG, "onCreate: " + s);
-//                }
-//                Log.e(TAG, "onCreate: \n");
-////                componentIntent(resolveInfo.resolvePackageName, resolveInfo.activityInfo.name);
-//            }
-
         }
-        mDatas = new ArrayList<>();
 
-        for (Map.Entry<String, List<AppLabelBean>> entry : mAppLabelBeanMap.entrySet()) {
-            mDatas.add(entry.getKey());
+        mDatas = new ArrayList<>();
+        mCurrentLabelBeanList = tree.getFirst().getNext();
+        for (AppLabelBean<IntentBean> labelBean : mCurrentLabelBeanList) {
+            mDatas.add(labelBean.getTag());
         }
         mAdapter = new MyListAdapter<>(this, mDatas);
         mHomeList.setAdapter(mAdapter);
         mHomeList.setOnItemClickListener(this);
+        Log.i(TAG, "onCreate: ActivityLabelTree is " + tree.toString());
     }
 
+    /**
+     * 组装Intent
+     * @param resolvePackageName 包名
+     * @param componentName 类名
+     * @return 启动Intent
+     */
     private Intent componentIntent(String resolvePackageName, String componentName) {
         return new Intent().setClassName(resolvePackageName, componentName);
     }
 
-    private void addNextItemToList() {
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i(TAG, "onItemClick: " + mDatas.size() + " " + mDatas.toString());
+        Toast.makeText(this, mDatas.get(position), Toast.LENGTH_SHORT).show();
+        AppLabelBean<IntentBean> appLabelBean = mCurrentLabelBeanList.get(position);
+        if (appLabelBean.getNext() == null) {
+            IntentBean intentBean = appLabelBean.getData();
+            Intent intent = componentIntent(intentBean.getPackageName(), intentBean.getClassName());
+            startActivity(intent);
+            getLabelTagAgain(appLabelBean.getParent());
+        } else {
+            getLabelTagAgain(appLabelBean);
+        }
+    }
 
+    /**
+     * 重新获取当前高度的所有Tag
+     * @param appLabelBean
+     */
+    private void getLabelTagAgain(AppLabelBean<IntentBean> appLabelBean) {
+        mDatas.clear();
+        mAdapter.clearData();
+        mCurrentLabelBeanList = appLabelBean.getNext();
+        for (AppLabelBean<IntentBean> labelBean : mCurrentLabelBeanList) {
+            mDatas.add(labelBean.getTag());
+        }
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        count++;
-        List<AppLabelBean> labelBeans = mAppLabelBeanMap.get(mDatas.get(position));
-        Log.e(TAG, "onItemClick: " + labelBeans.size());
-        if (labelBeans.size() > 1) {
-            List<String> list = new ArrayList<>();
-            for (AppLabelBean labelBean : labelBeans) {
-                if (!list.contains(labelBean.getLabelSplite()[count])) {
-                    list.add(labelBean.getLabelSplite()[count]);
-                }
-            }
-            mAdapter.resetDatas(list);
+    public void onBackPressed() {
+        Log.i(TAG, "onBackPressed: " + mCurrentLabelBeanList.size() + " " + mCurrentLabelBeanList.get(0).toString());
+        if (mCurrentLabelBeanList.size() > 0 && mCurrentLabelBeanList.get(0).getParent().getParent() != null) {
+            getLabelTagAgain(mCurrentLabelBeanList.get(0).getParent().getParent());
         } else {
-            AppLabelBean appLabelBean = labelBeans.get(0);
-            startActivity(componentIntent(appLabelBean.getPackageName(), appLabelBean.getClassName()));
+            super.onBackPressed();
         }
-//        List<String> list = new ArrayList<>();
-//        for (AppLabelBean labelBean : labelBeans) {
-//            if (labelBean.getLabelSplite().length == 1) {
-//                startActivity(componentIntent());
-//            }
-//        }
-        Toast.makeText(this, mDatas.get(position), Toast.LENGTH_SHORT).show();
     }
 
     @Override
