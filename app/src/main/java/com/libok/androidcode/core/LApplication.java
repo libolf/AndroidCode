@@ -3,9 +3,6 @@ package com.libok.androidcode.core;
 import android.app.Activity;
 import android.app.Application;
 
-import com.libok.androidcode.util.AndroidLogger;
-import com.libok.androidcode.util.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 

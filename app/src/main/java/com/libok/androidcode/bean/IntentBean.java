@@ -1,7 +1,5 @@
 package com.libok.androidcode.bean;
 
-import java.io.Serializable;
-
 /**
  * @author liboK  2018/08/21 上午 11:09
  * 可启动的Intent

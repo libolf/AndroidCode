@@ -7,15 +7,10 @@ import android.widget.Button;
 
 import com.libok.androidcode.R;
 
-import java.io.IOException;
-import java.io.LineNumberReader;
 import java.io.PrintWriter;
 import java.io.Serializable;
-import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
