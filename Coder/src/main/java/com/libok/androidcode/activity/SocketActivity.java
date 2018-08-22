@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.bean.WebConfig;
 import com.libok.androidcode.service.MessengerService;
+import com.libok.androidcode.socket.SimpleHttpServer;
 
 public class SocketActivity extends AppCompatActivity {
 
@@ -41,18 +43,23 @@ public class SocketActivity extends AppCompatActivity {
 
         }
     };
+    private SimpleHttpServer mSimpleHttpServer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_socket);
-        bindService(new Intent(this, MessengerService.class), mServiceConnection, Context.BIND_AUTO_CREATE);
-        Log.e(TAG, "onCreate: bind service");
+//        bindService(new Intent(this, MessengerService.class), mServiceConnection, Context.BIND_AUTO_CREATE);
+
+        WebConfig webConfig = new WebConfig(9635, 20);
+        mSimpleHttpServer = new SimpleHttpServer(webConfig);
+        mSimpleHttpServer.startAsync();
     }
 
     @Override
     protected void onDestroy() {
-        unbindService(mServiceConnection);
+//        unbindService(mServiceConnection);
+        mSimpleHttpServer.stopAsync();
         super.onDestroy();
     }
 }
