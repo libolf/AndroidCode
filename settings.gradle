@@ -1,1 +1,1 @@
-include ':Coder'
+include ':Coder', ':skinplugin'

@@ -77,13 +77,19 @@ public class SimpleHttpServer {
     private void onAcceptRemotePeer(Socket socket) {
         try {
 //            socket.getOutputStream().write("hello".getBytes());
+            HttpContext httpContext = new HttpContext();
+            httpContext.setUnderlySocket(socket);
             InputStream inputStream = socket.getInputStream();
             String headerLine = null;
+            String headerUrl = StreamToolkit.readLine(inputStream);
+            Log.e(TAG, "onAcceptRemotePeer: headerUrl = " + headerUrl);
             while ((headerLine = StreamToolkit.readLine(inputStream)) != null) {
                 if (headerLine.equals("\r\n")) {
                     break;
                 }
                 Log.e(TAG, "onAcceptRemotePeer: " + headerLine);
+                String[] split = headerLine.split(":");
+                httpContext.addRequestHeader(split[0], split[1]);
             }
         } catch (IOException e) {
             e.printStackTrace();

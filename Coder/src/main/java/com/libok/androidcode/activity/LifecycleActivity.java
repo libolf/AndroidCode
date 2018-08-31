@@ -87,6 +87,7 @@ public class LifecycleActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mSurfaceView.animationControl(false);
         Log.e(TAG, "onDestroy: ");
     }
 

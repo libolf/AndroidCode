@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     ListView mHomeList;
     @BindView(R.id.home_recycler)
     RecyclerView mHomeRecycler;
-    @BindView(R.id.top_toolbar)
+    @BindView(R.id.toolbar_fits)
     Toolbar mTopToolbar;
     private List<String> mDatas;
     private MyListAdapter<String, TestViewHolder> mAdapter;

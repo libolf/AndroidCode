@@ -6,9 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.libok.androidcode.R;
 import com.libok.androidcode.util.StatusBarUtil;
@@ -26,8 +28,10 @@ import butterknife.Unbinder;
 public class LeftFragment extends Fragment {
 
     private static final String TAG = "LeftFragment";
-    @BindView(R.id.left_toolbar)
-    Toolbar mTopToolbar;
+    @BindView(R.id.toolbar_fits_title)
+    TextView mToolbarFitsTitle;
+    @BindView(R.id.toolbar_fits)
+    Toolbar mToolbarFits;
     Unbinder unbinder;
 
     private View mRootView;
@@ -50,10 +54,14 @@ public class LeftFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_left, null);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
         unbinder = ButterKnife.bind(this, mRootView);
-        StatusBarUtil.immersiveStatusTest(getActivity());
-        ((AppCompatActivity) getActivity()).setSupportActionBar(mTopToolbar);
-        mTopToolbar.setPadding(0, StatusBarUtil.getStatusBarHeight(getContext()), 0, 0);
+        mToolbarFits.setPadding(0, StatusBarUtil.getStatusBarHeight(activity), 0,0);
+        activity.setSupportActionBar(mToolbarFits);
+        activity.getSupportActionBar().setTitle("");
+//        StatusBarUtil.immerseStatusBar(activity);
+        mToolbarFitsTitle.setText("Left");
+        Log.e(TAG, "onCreateView: " + mToolbarFits.getPaddingTop() + " " + mToolbarFits.getPaddingBottom() + " " + mToolbarFits.getHeight());
         return mRootView;
     }
 

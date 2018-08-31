@@ -18,164 +18,9 @@
         android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity
-            android:name=".activity.HomeActivity"
-            android:label="HomeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <activity
-            android:name=".activity.MainActivity"
-            android:label="Activity/ABC/MainActivity">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.StatusBarActivity"
-            android:label="Activity/ABC/SActivity"
-            android:theme="@style/NoWindowTitle"
-            android:windowSoftInputMode="adjustPan|stateHidden">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.AnimationActivity"
-            android:label="Activity/DE/AnimationActivity">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.GifActivity"
-            android:label="Activity/DE/GifActivity">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.MVPActivity"
-            android:label="Activitys/MVPActivity">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.QueueWriteActivity"
-            android:label="QueueWriteActivity">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.DialogActivity"
-            android:label="DialogActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.LifecycleActivity"
-            android:label="LifecycleActivity"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.SkipActivity"
-            android:label="SkipActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.ContentProviderActivity"
-            android:label="ContentProviderActivity">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.QRCodeActivity"
-            android:label="QRCodeActivity">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.ConstraintLayoutActivity"
-            android:label="ConstraintLayoutActivity">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.SocketActivity"
-            android:label="SocketActivity">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activity.RevealEffectActivity"
-            android:label="RevealEffectActivity">
-            <intent-filter>
-                <action android:name="AndroidCode" />
-
-                <category android:name="code" />
-            </intent-filter>
-        </activity>
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
 
         <provider
             android:name=".provider.TestContentProvider"
@@ -187,12 +32,195 @@
             android:name=".service.TestService"
             android:enabled="true"
             android:exported="true" />
-
         <service
             android:name=".service.MessengerService"
             android:enabled="true"
             android:exported="true"
             android:process=":messenger" />
+
+        <activity
+            android:name=".activity.HomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="Activity/ABC/MainActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.StatusBarActivity"
+            android:label="StatusBarActivity"
+            android:theme="@style/NoWindowTitle"
+            android:windowSoftInputMode="adjustPan|stateHidden">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.AnimationActivity"
+            android:label="Activity/DE/AnimationActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.GifActivity"
+            android:label="Activity/DE/GifActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MVPActivity"
+            android:label="Activitys/MVPActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.QueueWriteActivity"
+            android:label="QueueWriteActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.DialogActivity"
+            android:label="DialogActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.LifecycleActivity"
+            android:label="LifecycleActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SkipActivity"
+            android:label="SkipActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ContentProviderActivity"
+            android:label="ContentProviderActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.QRCodeActivity"
+            android:label="QRCodeActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ConstraintLayoutActivity"
+            android:label="ConstraintLayoutActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SocketActivity"
+            android:label="SocketActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.RevealEffectActivity"
+            android:label="RevealEffectActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MemoryActivity"
+            android:label="MemoryActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.Memory1Activity" />
+        <activity android:name=".activity.Memory2Activity" />
+        <activity
+            android:name=".activity.FragmentActivity"
+            android:label="FragmentActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".service.MyWallpaperService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/my_wallpaper" />
+        </service>
+
+        <activity android:name=".activity.SkinActivity"
+            android:label="SkinActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

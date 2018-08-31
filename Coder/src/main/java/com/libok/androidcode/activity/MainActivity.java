@@ -9,7 +9,6 @@ import android.widget.Button;
 import com.libok.androidcode.R;
 import com.libok.androidcode.bean.AppInfo;
 import com.libok.androidcode.util.L;
-import com.xiaomi.market.sdk.XiaomiUpdateAgent;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
 //        File file = new File(getFilesDir().getAbsolutePath() + File.separator + "object_save.txt");
 //        readObject(file);
 //        writeObject(file);
-        XiaomiUpdateAgent.update(this, true);
-        XiaomiUpdateAgent.setUpdateAutoPopup(true);
+//        XiaomiUpdateAgent.update(this, true);
+//        XiaomiUpdateAgent.setUpdateAutoPopup(true);
     }
 
     private void writeObject(File file) {

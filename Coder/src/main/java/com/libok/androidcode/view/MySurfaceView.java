@@ -61,11 +61,16 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
                             mHandler.sendEmptyMessageDelayed(1, 16 - mDurtion);
                         }
                     } else if (msg.what == -1) {
-                        getLooper().quitSafely();
+                        mHandler.getLooper().quit();
+//                        getLooper().quit();
+                        mHandler = null;
                     }
                 }
             };
-            mHandler.sendEmptyMessage(1);
+            if (mRunning) {
+                mHandler.sendEmptyMessage(1);
+                Log.e(TAG, "run: loop init init init");
+            }
             Looper.loop();
         }
     };
@@ -136,6 +141,7 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         if (mHandler != null) {
+            mHandler.removeMessages(1);
             mHandler.sendEmptyMessage(-1);
         }
         Log.e(TAG, "surfaceDestroyed: ");
@@ -153,7 +159,9 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
 //            mRunning = false;
 //        }
         Log.e(TAG, "animationControl: " + mRunning + " " + running);
+        mRunning = running;
         if (!running && mHandler != null) {
+            mHandler.removeMessages(1);
             mHandler.sendEmptyMessage(-1);
             mHandler = null;
         } else {
@@ -184,6 +192,9 @@ public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback
         }
 
         private void onDraw(Canvas canvas) {
+            if (canvas == null) {
+                return;
+            }
             clearCanvas(canvas);
             for (RainBean rainBean : mRainBeans) {
                 mPaint.setAlpha(rainBean.a);

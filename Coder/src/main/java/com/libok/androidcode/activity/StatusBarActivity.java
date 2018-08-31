@@ -3,6 +3,7 @@ package com.libok.androidcode.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import com.libok.androidcode.R;
 import com.libok.androidcode.fragment.LeftFragment;
 import com.libok.androidcode.fragment.MiddleFragment;
 import com.libok.androidcode.fragment.RightFragment;
+import com.libok.androidcode.util.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class StatusBarActivity extends AppCompatActivity implements ViewPager.On
         setContentView(R.layout.activity_status_bar);
         ButterKnife.bind(this);
 //        setSupportActionBar(mTopToolbar);
-//        StatusBarUtil.immerseStatusBar(this);
+        StatusBarUtil.immerseStatusBar(this);
 //        StatusBarUtil.immerseStatusAndNavigationBar(this, mTopToolbar, Color.GREEN);
 //        StatusBarUtil.immerseAll(this, null);
 //        StatusBarUtil.transparentStatus(this);
@@ -41,6 +43,7 @@ public class StatusBarActivity extends AppCompatActivity implements ViewPager.On
         mFragmentList.add(LeftFragment.newInstance());
         mFragmentList.add(MiddleFragment.newInstance());
         mFragmentList.add(RightFragment.newInstance());
+        mStatusViewpager.setOffscreenPageLimit(3);
         mStatusViewpager.setAdapter(new SimplePagerAdapter(getSupportFragmentManager()));
         mStatusViewpager.addOnPageChangeListener(this);
     }
@@ -60,7 +63,7 @@ public class StatusBarActivity extends AppCompatActivity implements ViewPager.On
 
     }
 
-    private class SimplePagerAdapter extends FragmentStatePagerAdapter {
+    private class SimplePagerAdapter extends FragmentPagerAdapter {
 
         public SimplePagerAdapter(FragmentManager fm) {
             super(fm);
