@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * @author liboK  2018/08/22 下午 07:21
  */
-class HttpContext {
+public class HttpContext {
 
     private Socket mSocket;
     private Map<String, String> mRequestMap;

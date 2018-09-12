@@ -25,6 +25,7 @@ import com.libok.androidcode.util.StatusBarUtil;
 import com.libok.androidcode.view.adapter.MyListAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -60,6 +61,8 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         PackageManager packageManager = getPackageManager();
         List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
         Log.i(TAG, "onCreate: Activity size is " + resolveInfos.size());
+
+        Collections.sort(resolveInfos, new ResolveInfo.DisplayNameComparator(packageManager));
 
         mCurrentLabelBeanList = new ArrayList<>();
         ActivityLabelTree<IntentBean> tree = new ActivityLabelTree<>(null, "first", null);

@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.bean.ResourceUrlHandler;
+import com.libok.androidcode.bean.UploadImageHandler;
 import com.libok.androidcode.bean.WebConfig;
 import com.libok.androidcode.service.MessengerService;
 import com.libok.androidcode.socket.SimpleHttpServer;
@@ -53,6 +55,8 @@ public class SocketActivity extends AppCompatActivity {
 
         WebConfig webConfig = new WebConfig(9635, 20);
         mSimpleHttpServer = new SimpleHttpServer(webConfig);
+        mSimpleHttpServer.registerResourceUrlHandler(new ResourceUrlHandler());
+        mSimpleHttpServer.registerResourceUrlHandler(new UploadImageHandler());
         mSimpleHttpServer.startAsync();
     }
 

@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 读取联系人 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".core.LApplication"
@@ -213,8 +214,26 @@
                 android:resource="@xml/my_wallpaper" />
         </service>
 
-        <activity android:name=".activity.SkinActivity"
+        <activity
+            android:name=".activity.SkinActivity"
             android:label="SkinActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ThemeActivity"
+            android:label="ThemeActivity">
+            <intent-filter>
+                <action android:name="AndroidCode" />
+
+                <category android:name="code" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.NotificationActivity"
+            android:label="NotificationActivity">
             <intent-filter>
                 <action android:name="AndroidCode" />
 

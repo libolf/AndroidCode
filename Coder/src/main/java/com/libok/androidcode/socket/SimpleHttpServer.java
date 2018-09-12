@@ -3,12 +3,15 @@ package com.libok.androidcode.socket;
 import android.util.Log;
 
 import com.libok.androidcode.bean.WebConfig;
+import com.libok.androidcode.interf.IResourceUrlHandler;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -24,10 +27,12 @@ public class SimpleHttpServer {
     private boolean mIsEnable;
     private WebConfig mWebConfig;
     private ServerSocket mServerSocket;
+    private Set<IResourceUrlHandler> mResourceUrlHandlers;
 
     public SimpleHttpServer(WebConfig webConfig) {
         mWebConfig = webConfig;
         mCachedThreadPool = Executors.newCachedThreadPool();
+        mResourceUrlHandlers = new HashSet<>();
     }
 
     public void startAsync() {
@@ -74,15 +79,21 @@ public class SimpleHttpServer {
         }
     }
 
+    public void registerResourceUrlHandler(IResourceUrlHandler handler) {
+        mResourceUrlHandlers.add(handler);
+    }
+
     private void onAcceptRemotePeer(Socket socket) {
+        Log.e(TAG, "onAcceptRemotePeer: start");
         try {
 //            socket.getOutputStream().write("hello".getBytes());
             HttpContext httpContext = new HttpContext();
             httpContext.setUnderlySocket(socket);
             InputStream inputStream = socket.getInputStream();
-            String headerLine = null;
-            String headerUrl = StreamToolkit.readLine(inputStream);
-            Log.e(TAG, "onAcceptRemotePeer: headerUrl = " + headerUrl);
+            String headerLine = StreamToolkit.readLine(inputStream);
+            String resourceUrl = headerLine.split(" ")[1];
+            Log.e(TAG, "onAcceptRemotePeer: headerLine = " + headerLine);
+            Log.e(TAG, "onAcceptRemotePeer: resourceUrl = " + resourceUrl);
             while ((headerLine = StreamToolkit.readLine(inputStream)) != null) {
                 if (headerLine.equals("\r\n")) {
                     break;
@@ -90,6 +101,12 @@ public class SimpleHttpServer {
                 Log.e(TAG, "onAcceptRemotePeer: " + headerLine);
                 String[] split = headerLine.split(":");
                 httpContext.addRequestHeader(split[0], split[1]);
+            }
+            for (IResourceUrlHandler handler : mResourceUrlHandlers) {
+                if (!handler.accept(resourceUrl)) {
+                    continue;
+                }
+                handler.handle(resourceUrl, httpContext);
             }
         } catch (IOException e) {
             e.printStackTrace();
