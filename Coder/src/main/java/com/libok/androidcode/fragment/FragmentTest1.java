@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import com.libok.androidcode.R;
 
-import butterknife.OnClick;
-
 /**
  * @author liboK  2018/08/28 下午 02:20
  */

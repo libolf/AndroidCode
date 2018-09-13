@@ -3,8 +3,6 @@ package com.libok.androidcode.core;
 import android.app.Activity;
 import android.app.Application;
 
-import com.squareup.leakcanary.LeakCanary;
-
 import java.util.ArrayList;
 import java.util.List;
 

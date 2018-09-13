@@ -4,6 +4,8 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +30,8 @@ public class NotificationActivity extends AppCompatActivity {
     @BindView(R.id.notification_cancel_button)
     Button mNotificationCancelButton;
     private NotificationManager mNotificationManager;
+
+    private Handler mHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,19 +69,25 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     public void showSimpleNotification() {
-        Notification.Builder builder = new Notification.Builder(this);
+        final Notification.Builder builder = new Notification.Builder(this);
         builder.setSmallIcon(R.drawable.ic_launcher);
         builder.setTicker("OJBK");
         builder.setContentText("你好啊");
         builder.setContentTitle("标题");
+        builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS);
 
-        mNotificationManager.notify(879, builder.build());
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mNotificationManager.notify(879, builder.build());
+            }
+        }, 5000);
     }
 
     public void showNotification1() {
         RemoteViews remoteViews = new RemoteViews(getPackageName(),
                 R.layout.notification_small_view);
-        RemoteViews remoteViews_large=new RemoteViews(getPackageName(),R.layout.notification_big_view);
+        RemoteViews remoteViews_large = new RemoteViews(getPackageName(), R.layout.notification_big_view);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
 
@@ -86,18 +96,17 @@ public class NotificationActivity extends AppCompatActivity {
                 .setTicker("music is playing");
         Notification notification = builder.build();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            notification.bigContentView=remoteViews_large;
+            notification.bigContentView = remoteViews_large;
         }
-        notification.contentView=remoteViews;
+        notification.contentView = remoteViews;
 
-        mNotificationManager.notify(1,notification);
+        mNotificationManager.notify(1, notification);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void showNotification() {
         RemoteViews smallView = new RemoteViews(getPackageName(), R.layout.notification_small_view);
         RemoteViews bigView = new RemoteViews(getPackageName(), R.layout.notification_big_view);
-
 
 
 //        PendingIntent pendingIntent = PendingIntent.getActivity(this, 12, new Intent(this, NotificationActivity.class), 0);

@@ -1,8 +1,6 @@
 package com.libok.androidcode.activity;
 
 import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.Message;
@@ -10,13 +8,11 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.libok.androidcode.R;
 import com.libok.androidcode.bean.ResourceUrlHandler;
 import com.libok.androidcode.bean.UploadImageHandler;
 import com.libok.androidcode.bean.WebConfig;
-import com.libok.androidcode.service.MessengerService;
 import com.libok.androidcode.socket.SimpleHttpServer;
 
 public class SocketActivity extends AppCompatActivity {

@@ -10,7 +10,6 @@ import android.widget.Button;
 import com.libok.androidcode.R;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

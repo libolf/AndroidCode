@@ -1,29 +1,19 @@
 package com.libok.androidcode.fragment;
 
 import android.graphics.Color;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.libok.androidcode.R;
 import com.libok.androidcode.drawable.ShadowDrawable;
 import com.libok.androidcode.util.DisplayUtils;
-import com.libok.androidcode.util.StatusBarUtil;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * @author liboK
