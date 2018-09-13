@@ -53,19 +53,6 @@ public class RightFragment extends Fragment {
 //        mToolbarTitle.setText("Right");
 //        Log.e(TAG, "onCreateView: " + mTopToolbar.getPaddingTop() + " " + mTopToolbar.getHeight());
 
-        View view = mRootView.findViewById(R.id.fragment_mine_white_background);
-        ShadowDrawable shadowDrawable = new ShadowDrawable(ShadowDrawable.SHAPE_ROUND,
-                new int[]{Color.parseColor("#FFFCFCFC")},
-                0,
-                Color.parseColor("#103447DA"),
-                DisplayUtils.dp2px(getActivity(), 5),
-                DisplayUtils.dp2px(getActivity(), 1),
-                DisplayUtils.dp2px(getActivity(), 5));
-        view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        view.setBackground(shadowDrawable);
-        LinearLayout linearLayout = mRootView.findViewById(R.id.fragment_mine_bottom_background);
-        linearLayout.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        ViewCompat.setBackground(linearLayout, shadowDrawable);
         return mRootView;
     }
 
