@@ -57,6 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     public void onClick(View v) {
 //                        ToastUtils.showToast(BaseActivity.this, "退回", Toast.LENGTH_SHORT);
                         onBackPressed();
+                        overridePendingTransition(R.anim.anim_activity_back_translate_enter, R.anim.anim_activity_back_translate_exit);
                     }
                 });
             }
@@ -67,6 +68,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             restoreInstanceState(savedInstanceState);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.anim_activity_back_translate_enter, R.anim.anim_activity_back_translate_exit);
     }
 
     @Override

@@ -10,7 +10,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.Transformation;
 import android.widget.Button;
@@ -31,16 +30,18 @@ public class AnimationActivity extends BaseActivity {
 
     private static final String TAG = "AnimationActivity";
 
-    @BindView(R.id.animation_button_alpha)
+    @BindView(R.id.animation_alpha_button)
     Button mAnimationButtonAlpha;
-    @BindView(R.id.animation_button_scale)
+    @BindView(R.id.animation_scale_button)
     Button mAnimationButtonScale;
-    @BindView(R.id.animation_button_rotate)
+    @BindView(R.id.animation_rotate_button)
     Button mAnimationButtonRotate;
-    @BindView(R.id.animation_button_translate)
+    @BindView(R.id.animation_translate_button)
     Button mAnimationButtonTranslate;
-    @BindView(R.id.animation_button_diy)
+    @BindView(R.id.animation_custom_button)
     Button mAnimationDiyButton;
+    @BindView(R.id.animation_special_animator_button)
+    Button mSpecialAnimatorButton;
     @BindView(R.id.animation_num_text)
     TextView mNumberText;
 
@@ -79,23 +80,26 @@ public class AnimationActivity extends BaseActivity {
         LApplication.removeActivity(this);
     }
 
-    @OnClick({R.id.animation_button_alpha, R.id.animation_button_scale, R.id.animation_button_rotate, R.id.animation_button_translate, R.id.animation_button_diy})
+    @OnClick({R.id.animation_alpha_button, R.id.animation_scale_button, R.id.animation_rotate_button, R.id.animation_translate_button, R.id.animation_custom_button, R.id.animation_special_animator_button})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.animation_button_alpha:
+            case R.id.animation_alpha_button:
                 alphaAnimation();
                 break;
-            case R.id.animation_button_scale:
+            case R.id.animation_scale_button:
                 scaleAnimation();
                 break;
-            case R.id.animation_button_rotate:
+            case R.id.animation_rotate_button:
                 rotateAnimation();
                 break;
-            case R.id.animation_button_translate:
+            case R.id.animation_translate_button:
                 translateAnimation();
                 break;
-            case R.id.animation_button_diy:
+            case R.id.animation_custom_button:
                 diyAnimation();
+                break;
+            case R.id.animation_special_animator_button:
+                charAnimator();
                 break;
         }
     }
@@ -111,8 +115,9 @@ public class AnimationActivity extends BaseActivity {
     }
 
     private void rotateAnimation() {
-        Animation animation = new RotateAnimation(0, 180, 0.5f, 0.5f);
-        animation.setDuration(2000);
+//        Animation animation = new RotateAnimation(0, 180, 0.5f, 0.5f);
+//        animation.setDuration(2000);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
         mAnimationButtonRotate.startAnimation(animation);
     }
 
@@ -123,15 +128,9 @@ public class AnimationActivity extends BaseActivity {
     }
 
     private void translateAnimation() {
-//        Animation animation = new TranslateAnimation(1.0f, 1.1f, 0.5f, 1.5f);
-//        animation.setDuration(2000);
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_translate);
-//        LayoutAnimationController animationController = new LayoutAnimationController(animation);
-//        animationController.setDelay(0.5F);
-//        animationController.setOrder(LayoutAnimationController.ORDER_RANDOM);
-//        ListView.setLayoutAnimation(animationController);
 
-        mAnimationButtonScale.startAnimation(animation);
+        mAnimationButtonTranslate.startAnimation(animation);
 
         ValueAnimator integerValueAnimator = ValueAnimator.ofObject(new IntEvaluator() {
             @Override
@@ -160,8 +159,6 @@ public class AnimationActivity extends BaseActivity {
         valueAnimator.setDuration(5000);
         valueAnimator.setInterpolator(new LinearInterpolator());
 //        valueAnimator.start();
-
-        charAnimator();
     }
 
     private void charAnimator() {
@@ -172,6 +169,7 @@ public class AnimationActivity extends BaseActivity {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 Log.e(TAG, "onAnimationUpdate: " + String.valueOf(animation.getAnimatedValue()));
+                mNumberText.setText(String.valueOf(animation.getAnimatedValue()));
             }
         });
         valueAnimator1.start();

@@ -3,4 +3,10 @@
     <string name="main_button_statusbar">多页面的沉浸式状态栏</string>
     <string name="main_button_animation">动画</string>
     <string name="skip_test_string">第%1$d页，第%2$d行</string>
+    <string name="animation_alpha">透明度</string>
+    <string name="animation_scale">缩放</string>
+    <string name="animation_rotate">旋转</string>
+    <string name="animation_translate">位移</string>
+    <string name="animation_custom">自定义动画</string>
+    <string name="animation_special_animator">特殊的属性动画</string>
 </resources>

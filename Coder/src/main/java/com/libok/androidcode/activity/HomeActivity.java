@@ -130,6 +130,8 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
             IntentBean intentBean = appLabelBean.getData();
             Intent intent = componentIntent(intentBean.getPackageName(), intentBean.getClassName());
             startActivity(intent);
+            overridePendingTransition(R.anim.anim_activity_go_translate_enter, R.anim.anim_activity_go_translate_exit);
+//            overridePendingTransition(R.anim.anim_activity_go_scale_enter, R.anim.anim_activity_go_scale_exit);
             getLabelTagAgain(appLabelBean.getParent());
         } else {
             getLabelTagAgain(appLabelBean);

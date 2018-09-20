@@ -3,66 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar_back_layout" />
 
-    <LinearLayout
-        android:id="@+id/animation_linear"
+    <Button
+        android:id="@+id/animation_alpha_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/animation_alpha" />
+
+    <Button
+        android:id="@+id/animation_scale_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/animation_scale" />
+
+    <Button
+        android:id="@+id/animation_rotate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/animation_rotate" />
+
+    <Button
+        android:id="@+id/animation_translate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/animation_translate" />
+
+    <Button
+        android:id="@+id/animation_custom_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/animation_custom" />
+
+    <Button
+        android:id="@+id/animation_special_animator_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/animation_special_animator"/>
+
+    <TextView
+        android:id="@+id/animation_num_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/animation_button_alpha"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="透明度" />
-
-        <Button
-            android:id="@+id/animation_button_scale"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="缩放" />
-
-        <Button
-            android:id="@+id/animation_button_rotate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="旋转" />
-
-        <Button
-            android:id="@+id/animation_button_translate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="位移" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/animator_linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/animation_button_diy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="自定义动画" />
-
-        <TextView
-            android:id="@+id/animation_num_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="24sp"
-            tools:text="as" />
-
-    </LinearLayout>
+        android:gravity="center"
+        android:textSize="24sp"
+        tools:text="as" />
 
 </LinearLayout>
