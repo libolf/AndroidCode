@@ -2,14 +2,14 @@ package com.libok.androidcode.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.core.LApplication;
 import com.libok.androidcode.interf.IBaseView;
 import com.libok.androidcode.presenter.MvpPresenter;
 import com.libok.androidcode.util.L;
 
-public class MVPActivity extends AppCompatActivity implements IBaseView {
+public class MVPActivity extends BaseActivity implements IBaseView {
 
     private static final String TAG = "MVPActivity";
 
@@ -17,9 +17,17 @@ public class MVPActivity extends AppCompatActivity implements IBaseView {
     private ProgressDialog mProgressDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mvp);
+    protected int setContentViewId() {
+        return R.layout.activity_mvp;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return "MVP模式";
+    }
+
+    @Override
+    protected void initView() {
         mPresenter = new MvpPresenter();
         mPresenter.attachView(this);
         L.e(TAG, "onCreate: " + mPresenter.isAttach());
@@ -27,6 +35,26 @@ public class MVPActivity extends AppCompatActivity implements IBaseView {
         mProgressDialog.setMessage("加载中……");
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mPresenter.getData();
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 
     @Override
@@ -55,7 +83,7 @@ public class MVPActivity extends AppCompatActivity implements IBaseView {
 
     @Override
     public void showError(Throwable throwable) {
-       L.e(TAG, "showError：", throwable);
+        L.e(TAG, "showError：", throwable);
     }
 
     @Override

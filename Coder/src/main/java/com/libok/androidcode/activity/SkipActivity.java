@@ -1,18 +1,18 @@
 package com.libok.androidcode.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.core.LApplication;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SkipActivity extends AppCompatActivity {
+public class SkipActivity extends BaseActivity {
 
     private static final String TAG = "SkipActivity";
     @BindView(R.id.skip_text)
@@ -21,16 +21,40 @@ public class SkipActivity extends AppCompatActivity {
     Button mSkipTextChangeButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_skip);
+    protected int setContentViewId() {
+        return R.layout.activity_skip;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return "跳转页面";
+    }
+
+    @Override
+    protected void initView() {
         ButterKnife.bind(this);
-        Log.e(TAG, "onCreate: ");
-//        Book book = getIntent().getParcelableExtra("book");
-//        Log.e(TAG, "onCreate: " + book.toString());
-//        mSkipText.setText(book.toString());
-        String s = getString(R.string.skip_test_string, 12.0d, 24.0d);
-        Log.e(TAG, "onCreate: " +s);
+    }
+
+    @Override
+    protected void initData() {
+        // 格式化String
+        String s = getString(R.string.skip_test_string, 12, 24);
+        Log.e(TAG, "onCreate: " + s);
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 
     @OnClick(R.id.skip_text_change)

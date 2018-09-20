@@ -6,16 +6,16 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.libok.androidcode.R;
 import com.libok.androidcode.bean.ResourceUrlHandler;
 import com.libok.androidcode.bean.UploadImageHandler;
 import com.libok.androidcode.bean.WebConfig;
+import com.libok.androidcode.core.LApplication;
 import com.libok.androidcode.socket.SimpleHttpServer;
 
-public class SocketActivity extends AppCompatActivity {
+public class SocketActivity extends BaseActivity {
 
     private static final String TAG = "SocketActivity";
 
@@ -44,16 +44,42 @@ public class SocketActivity extends AppCompatActivity {
     private SimpleHttpServer mSimpleHttpServer;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_socket);
-//        bindService(new Intent(this, MessengerService.class), mServiceConnection, Context.BIND_AUTO_CREATE);
+    protected int setContentViewId() {
+        return R.layout.activity_socket;
+    }
 
+    @Override
+    protected String setActivityTitle() {
+        return "手机微服务器";
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
         WebConfig webConfig = new WebConfig(9635, 20);
         mSimpleHttpServer = new SimpleHttpServer(webConfig);
         mSimpleHttpServer.registerResourceUrlHandler(new ResourceUrlHandler());
         mSimpleHttpServer.registerResourceUrlHandler(new UploadImageHandler());
         mSimpleHttpServer.startAsync();
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 
     @Override

@@ -1,17 +1,45 @@
 package com.libok.androidcode.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.core.LApplication;
 import com.libok.androidcode.util.StatusBarUtil;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+    protected int setContentViewId() {
+        return R.layout.activity_splash;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return null;
+    }
+
+    @Override
+    protected void initView() {
         StatusBarUtil.immerseAll(this);
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 }

@@ -8,18 +8,18 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.core.LApplication;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NotificationActivity extends AppCompatActivity {
+public class NotificationActivity extends BaseActivity {
 
     private static final int NOTIFICATION_ID = 6382;
 
@@ -34,12 +34,39 @@ public class NotificationActivity extends AppCompatActivity {
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notification);
+    protected int setContentViewId() {
+        return R.layout.activity_notification;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return "通知栏";
+    }
+
+    @Override
+    protected void initView() {
         ButterKnife.bind(this);
 
+    }
+
+    @Override
+    protected void initData() {
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

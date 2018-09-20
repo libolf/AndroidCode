@@ -3,13 +3,13 @@ package com.libok.androidcode.activity;
 import android.animation.Animator;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.core.LApplication;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,10 +18,10 @@ import butterknife.ButterKnife;
  * @author liboK  2018-08-20 0020 上午 10:41
  * 揭露动画
  */
-public class RevealEffectActivity extends AppCompatActivity {
+public class RevealEffectActivity extends BaseActivity {
 
     private static final String TAG = "RevealEffectActivity";
-    
+
     @BindView(R.id.reveal_effect_fb)
     FloatingActionButton mRevealEffectFb;
     @BindView(R.id.reveal_effect_view)
@@ -30,11 +30,18 @@ public class RevealEffectActivity extends AppCompatActivity {
     EditText mRevealEffectPassword;
     private Animator mCircularReveal;
 
+    @Override
+    protected int setContentViewId() {
+        return R.layout.activity_reveal_effect;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reveal_effect);
+    protected String setActivityTitle() {
+        return "揭露动画";
+    }
+
+    @Override
+    protected void initView() {
         ButterKnife.bind(this);
 
         mRevealEffectFb.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +77,26 @@ public class RevealEffectActivity extends AppCompatActivity {
 //                }
             }
         });
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 
 }

@@ -32,7 +32,9 @@ public class LApplication extends Application {
     }
 
     public static void addActivity(Activity activity) {
-        mActivityList.add(activity);
+        if (!mActivityList.contains(activity)) {
+            mActivityList.add(activity);
+        }
     }
 
     public static void removeActivity(Activity activity) {

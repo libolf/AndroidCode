@@ -1,5 +1,6 @@
 package com.libok.androidcode.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -119,5 +120,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 从Application中的List删除当前Activity
      */
     protected abstract void removeActivityForList();
+
+    protected void startAnimationActivity(Intent intent) {
+        startActivity(intent);
+        overridePendingTransition(R.anim.anim_activity_go_translate_enter, R.anim.anim_activity_go_translate_exit);
+//      overridePendingTransition(R.anim.anim_activity_go_scale_enter, R.anim.anim_activity_go_scale_exit);
+    }
 
 }

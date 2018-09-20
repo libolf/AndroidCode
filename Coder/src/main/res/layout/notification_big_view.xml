@@ -18,14 +18,14 @@
             android:layout_marginBottom="4dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="4dp"
-            android:src="@drawable/ic_launcher_round"/>
+            android:src="@drawable/ic_launcher_round" />
 
         <TextView
             android:id="@+id/notification_big_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="24dp"
-            android:text="测试"/>
+            android:text="测试" />
 
     </LinearLayout>
 

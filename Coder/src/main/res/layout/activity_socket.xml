@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.SocketActivity">
 
+    <include layout="@layout/toolbar_back_layout" />
+
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minLines="2"
         android:ellipsize="end"
+        android:minLines="2"
         android:padding="8dp"
         android:singleLine="true"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:text="带你飞soin法搜in地方怕搜到奶奶的三大苏东坡安迪和覅和完成农食品从那时破按时打卡说明群殴带你飞soin法搜in地方怕搜到奶奶的三大苏东坡安迪和覅和完成农食品从那时破按时打卡说明群殴带你飞soin法搜in地方怕搜到奶奶的三大苏东坡安迪和覅和完成农食品从那时破按时打卡说明群殴带你飞soin法搜in地方怕搜到奶奶的三大苏东坡安迪和覅和完成农食品从那时破按时打卡说明群殴带你飞soin法搜in地方怕搜到奶奶的三大苏东坡安迪和覅和完成农食品从那时破按时打卡说明群殴"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="带你飞soin法搜in地方怕搜到奶奶的三大苏东坡安迪和覅和完成农食品从那时破按时打卡说明群殴带你飞soin法搜in地方怕搜到奶奶的三大苏东坡安迪和覅和完成农食品从那时破按时打卡说明群殴带你飞soin法搜in地方怕搜到奶奶的三大苏东坡安迪和覅和完成农食品从那时破按时打卡说明群殴带你飞soin法搜in地方怕搜到奶奶的三大苏东坡安迪和覅和完成农食品从那时破按时打卡说明群殴带你飞soin法搜in地方怕搜到奶奶的三大苏东坡安迪和覅和完成农食品从那时破按时打卡说明群殴" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

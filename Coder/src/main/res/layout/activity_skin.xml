@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.SkinActivity">
+
+    <include layout="@layout/toolbar_back_layout" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,15 +17,15 @@
             android:id="@+id/skin_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#aaaaaa"
             android:text="Item1"
-            android:textSize="18sp"/>
+            android:textColor="#aaaaaa"
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/skin_image1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"/>
+            android:src="@drawable/ic_launcher" />
 
     </LinearLayout>
 
@@ -37,15 +38,15 @@
             android:id="@+id/skin_text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
             android:text="Item1"
-            android:textSize="18sp"/>
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/skin_image2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"/>
+            android:src="@drawable/ic_launcher" />
 
     </LinearLayout>
 
@@ -53,12 +54,12 @@
         android:id="@+id/skin_change_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="插件换肤"/>
+        android:text="插件换肤" />
 
     <Button
         android:id="@+id/skin_reset_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="重置"/>
+        android:text="重置" />
 
 </LinearLayout>

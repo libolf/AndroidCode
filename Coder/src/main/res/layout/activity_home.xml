@@ -20,6 +20,6 @@
         android:dividerHeight="8dp"
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="true"
-        android:overScrollFooter="@drawable/divider_home_list"/>
+        android:overScrollFooter="@drawable/divider_home_list" />
 
 </LinearLayout>

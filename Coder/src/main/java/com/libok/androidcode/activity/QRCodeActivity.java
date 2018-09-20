@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.core.LApplication;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,7 +31,7 @@ import butterknife.OnClick;
 import cn.bingoogolapple.qrcode.zxing.QRCodeDecoder;
 import cn.bingoogolapple.qrcode.zxing.QRCodeEncoder;
 
-public class QRCodeActivity extends AppCompatActivity {
+public class QRCodeActivity extends BaseActivity {
 
     private static final String TAG = "QRCodeActivity";
 
@@ -133,10 +133,22 @@ public class QRCodeActivity extends AppCompatActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qrcode);
+    protected int setContentViewId() {
+        return R.layout.activity_qrcode;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return "二维码";
+    }
+
+    @Override
+    protected void initView() {
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initData() {
         new Thread(mRunnable).start();
 //        Log.e(TAG, "onCreate: " + MediaStore.Images.Media.EXTERNAL_CONTENT_URI.toString());
         File filesDir = getFilesDir();
@@ -152,7 +164,21 @@ public class QRCodeActivity extends AppCompatActivity {
                 externalStorageOicturePublicDirectory + "\n" +
                 externalStorageDcimPublicDirectory.getPath() + "\n" +
                 externalStorageDirectory.getPath());
+    }
 
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 
     @OnClick({R.id.qr_code_create, R.id.qr_code_recognition, R.id.qr_code_save})

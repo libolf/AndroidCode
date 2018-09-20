@@ -6,17 +6,17 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.core.LApplication;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ContentProviderActivity extends AppCompatActivity {
+public class ContentProviderActivity extends BaseActivity {
 
     private static final String TAG = "ContentProviderActivity";
 
@@ -26,15 +26,22 @@ public class ContentProviderActivity extends AppCompatActivity {
     private CursorLoader mCursorLoader;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_content_provider);
-        ButterKnife.bind(this);
-        Log.e(TAG, "onCreate: " + Thread.currentThread().getId());
-        initData();
+    protected int setContentViewId() {
+        return R.layout.activity_content_provider;
     }
 
-    private void initData() {
+    @Override
+    protected String setActivityTitle() {
+        return "ContentProvider";
+    }
+
+    @Override
+    protected void initView() {
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initData() {
 //        Cursor cursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
 //        while (cursor.moveToNext()) {
 //
@@ -67,5 +74,20 @@ public class ContentProviderActivity extends AppCompatActivity {
                 simpleCursorAdapter.swapCursor(null);
             }
         });
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 }

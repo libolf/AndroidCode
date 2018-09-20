@@ -2,13 +2,13 @@ package com.libok.androidcode.activity;
 
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.core.LApplication;
 
 import java.io.File;
 
@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * <p>
  * PackageName：com.libok.skinplugin
  */
-public class SkinActivity extends AppCompatActivity {
+public class SkinActivity extends BaseActivity {
 
     @BindView(R.id.skin_text1)
     TextView mSkinText1;
@@ -42,10 +42,38 @@ public class SkinActivity extends AppCompatActivity {
     private String mSkinPluginPackageName = "com.libok.skinplugin";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_skin);
+    protected int setContentViewId() {
+        return R.layout.activity_skin;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return "换肤";
+    }
+
+    @Override
+    protected void initView() {
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 
     @OnClick({R.id.skin_change_button, R.id.skin_reset_button})

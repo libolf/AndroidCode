@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 
 import com.libok.androidcode.R;
 import com.libok.androidcode.aidl.Book;
+import com.libok.androidcode.core.LApplication;
 import com.libok.androidcode.util.ILogger;
 import com.libok.androidcode.util.LoggerFactory;
 import com.libok.androidcode.util.PathUtil;
@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class QueueWriteActivity extends AppCompatActivity {
+public class QueueWriteActivity extends BaseActivity {
 
     private static final ILogger log = LoggerFactory.getLogger(QueueWriteActivity.class);
     private static final String TAG = "QueueWriteActivity";
@@ -42,11 +42,23 @@ public class QueueWriteActivity extends AppCompatActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_queue_write);
+    protected int setContentViewId() {
+        return R.layout.activity_queue_write;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return "日志记录";
+    }
+
+    @Override
+    protected void initView() {
         ButterKnife.bind(this);
-        // getPath  相对路径
+    }
+
+    @Override
+    protected void initData() {
+// getPath  相对路径
         // getAbsolute  绝对路径
 //        log.error("path = " + logDirectory.getPath() + "absolutePath = " + logDirectory.getAbsolutePath());
 
@@ -73,19 +85,21 @@ public class QueueWriteActivity extends AppCompatActivity {
         }
 //        startActivity(new Intent(this, SkipActivity.class));
 //        finish();
-        
-    }
-    
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        log.error("newIntent = " + intent.getStringExtra("header"));
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.e(TAG, "onDestroy: ");
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 
     @Override
@@ -153,13 +167,25 @@ public class QueueWriteActivity extends AppCompatActivity {
         startActivity(new Intent(this, SkipActivity.class).putExtra("book", book));
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        log.error("newIntent = " + intent.getStringExtra("header"));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: ");
+    }
+
     private class LogThread extends Thread {
 
         private String tag;
         private int count = 0;
 //        private BufferedWriter mBufferedWriter;
 
-        public LogThread(String tag, File file){
+        public LogThread(String tag, File file) {
             this.tag = tag;
 //            try {
 //                mBufferedWriter = new BufferedWriter(new FileWriter(file));

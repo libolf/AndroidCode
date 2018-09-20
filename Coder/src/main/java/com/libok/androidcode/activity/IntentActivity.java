@@ -3,7 +3,6 @@ package com.libok.androidcode.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import com.libok.androidcode.R;
@@ -14,23 +13,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class IntentActivity extends AppCompatActivity {
+public class IntentActivity extends BaseActivity {
 
     @BindView(R.id.intent_create_chooser_button)
     Button mIntentCreateChooserButton;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intent);
-        LApplication.addActivity(this);
-        ButterKnife.bind(this);
-//        Intent intent = new Intent(this, GifActivity.class);
-//        intent.setData();
-//        intent.setType();
-//        intent.setDataAndType()
-
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -78,7 +64,37 @@ public class IntentActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected int setContentViewId() {
+        return R.layout.activity_intent;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return "Intent";
+    }
+
+    @Override
+    protected void initView() {
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 }

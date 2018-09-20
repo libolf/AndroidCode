@@ -50,15 +50,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivity"
-            android:label="Activity/ABC/MainActivity">
-            <intent-filter>
-                <action android:name="com.libok.androidcode.action.activity.tree" />
-
-                <category android:name="com.libok.androidcode.category.activity.tree" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".activity.StatusBarActivity"
             android:label="StatusBarActivity"
             android:theme="@style/NoWindowTitle"

@@ -1,15 +1,15 @@
 package com.libok.androidcode.activity;
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.core.LApplication;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Memory1Activity extends AppCompatActivity {
+public class Memory1Activity extends BaseActivity {
 
     private Handler mHandler = new Handler();
 
@@ -22,11 +22,32 @@ public class Memory1Activity extends AppCompatActivity {
     private Timer mTimer;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_memory1);
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacks(mRunnable);
+        mHandler = null;
+        mRunnable = null;
+    }
 
-        mTimer = new Timer(){};
+    @Override
+    protected int setContentViewId() {
+        return R.layout.activity_memory1;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return "内存泄漏1";
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
+        mTimer = new Timer() {
+        };
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -44,10 +65,17 @@ public class Memory1Activity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mHandler.removeCallbacks(mRunnable);
-        mHandler = null;
-        mRunnable = null;
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 }

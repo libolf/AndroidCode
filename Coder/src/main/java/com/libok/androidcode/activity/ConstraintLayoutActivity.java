@@ -1,8 +1,6 @@
 package com.libok.androidcode.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.core.LApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,26 +17,50 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ConstraintLayoutActivity extends AppCompatActivity {
+public class ConstraintLayoutActivity extends BaseActivity {
 
-    @BindView(R.id.constraint_toolbar)
-    Toolbar mConstraintToolbar;
     @BindView(R.id.constraint_listview)
     ListView mConstraintListView;
 
     private List<String> mData;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_constraint_layout);
-        ButterKnife.bind(this);
+    protected int setContentViewId() {
+        return R.layout.activity_constraint_layout;
+    }
 
+    @Override
+    protected String setActivityTitle() {
+        return "ConstraintLayout布局";
+    }
+
+    @Override
+    protected void initView() {
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initData() {
         mData = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
             mData.add("item" + (i + 1));
         }
         mConstraintListView.setAdapter(new ConstraintAdapter());
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
     }
 
     class ConstraintAdapter extends BaseAdapter {
