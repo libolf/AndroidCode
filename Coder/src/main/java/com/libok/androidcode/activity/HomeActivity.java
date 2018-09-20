@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +17,8 @@ import android.widget.Toast;
 import com.libok.androidcode.R;
 import com.libok.androidcode.bean.AppLabelBean;
 import com.libok.androidcode.bean.IntentBean;
-import com.libok.androidcode.core.LApplication;
 import com.libok.androidcode.core.ActivityLabelTree;
-import com.libok.androidcode.util.StatusBarUtil;
+import com.libok.androidcode.util.Constants;
 import com.libok.androidcode.view.adapter.MyListAdapter;
 
 import java.util.ArrayList;
@@ -31,7 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, MyListAdapter.ViewCreator<String, HomeActivity.TestViewHolder> {
+public class HomeActivity extends BaseActivity implements AdapterView.OnItemClickListener, MyListAdapter.ViewCreator<String, HomeActivity.TestViewHolder> {
 
     private static final String TAG = "HomeActivity";
 
@@ -39,34 +36,38 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     ListView mHomeList;
     @BindView(R.id.home_recycler)
     RecyclerView mHomeRecycler;
-    @BindView(R.id.toolbar_fits)
-    Toolbar mTopToolbar;
-    private List<String> mDatas;
+    private List<String> mData;
     private MyListAdapter<String, TestViewHolder> mAdapter;
     private List<AppLabelBean<IntentBean>> mCurrentLabelBeanList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+    protected int setContentViewId() {
+        return R.layout.activity_home;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return "Coder";
+    }
+
+    @Override
+    protected void initView() {
         ButterKnife.bind(this);
-        StatusBarUtil.immerseStatusBar(this);
-        setSupportActionBar(mTopToolbar);
-        getSupportActionBar().setTitle("Coder");
+    }
 
-        LApplication.addActivity(this);
-
-        Intent intent = new Intent("AndroidCode", null);
-        intent.addCategory("code");
+    @Override
+    protected void initData() {
+        Intent intent = new Intent(Constants.ActivityConst.ACTIVITY_CUSTOM_ACTION, null);
+        intent.addCategory(Constants.ActivityConst.ACTIVITY_CUSTOM_CATEGORY);
         PackageManager packageManager = getPackageManager();
-        List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
-        Log.i(TAG, "onCreate: Activity size is " + resolveInfos.size());
+        List<ResolveInfo> resolveInfoList = packageManager.queryIntentActivities(intent, 0);
+        Log.i(TAG, "onCreate: Activity size is " + resolveInfoList.size());
 
-        Collections.sort(resolveInfos, new ResolveInfo.DisplayNameComparator(packageManager));
+        Collections.sort(resolveInfoList, new ResolveInfo.DisplayNameComparator(packageManager));
 
         mCurrentLabelBeanList = new ArrayList<>();
         ActivityLabelTree<IntentBean> tree = new ActivityLabelTree<>(null, "first", null);
-        for (ResolveInfo resolveInfo : resolveInfos) {
+        for (ResolveInfo resolveInfo : resolveInfoList) {
             String label = resolveInfo.loadLabel(packageManager).toString();
             IntentBean intentBean = new IntentBean(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
             Log.i(TAG, "onCreate: " + label + " " + intentBean.toString());
@@ -82,21 +83,38 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         }
 
-        mDatas = new ArrayList<>();
+        mData = new ArrayList<>();
         mCurrentLabelBeanList = tree.getFirst().getNext();
         for (AppLabelBean<IntentBean> labelBean : mCurrentLabelBeanList) {
-            mDatas.add(labelBean.getTag());
+            mData.add(labelBean.getTag());
         }
-        mAdapter = new MyListAdapter<>(this, mDatas);
+        mAdapter = new MyListAdapter<>(this, mData);
         mHomeList.setAdapter(mAdapter);
         mHomeList.setOnItemClickListener(this);
+
         Log.i(TAG, "onCreate: ActivityLabelTree is " + tree.toString());
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+
+    }
+
+    @Override
+    protected void removeActivityForList() {
+
     }
 
     /**
      * 组装Intent
+     *
      * @param resolvePackageName 包名
-     * @param componentName 类名
+     * @param componentName      类名
      * @return 启动Intent
      */
     private Intent componentIntent(String resolvePackageName, String componentName) {
@@ -105,8 +123,8 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.i(TAG, "onItemClick: " + mDatas.size() + " " + mDatas.toString());
-        Toast.makeText(this, mDatas.get(position), Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "onItemClick: " + mData.size() + " " + mData.toString());
+        Toast.makeText(this, mData.get(position), Toast.LENGTH_SHORT).show();
         AppLabelBean<IntentBean> appLabelBean = mCurrentLabelBeanList.get(position);
         if (appLabelBean.getNext() == null) {
             IntentBean intentBean = appLabelBean.getData();
@@ -120,14 +138,15 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
     /**
      * 重新获取当前高度的所有Tag
-     * @param appLabelBean
+     *
+     * @param appLabelBean 当前位置的总父节点
      */
     private void getLabelTagAgain(AppLabelBean<IntentBean> appLabelBean) {
-        mDatas.clear();
+        mData.clear();
         mAdapter.clearData();
         mCurrentLabelBeanList = appLabelBean.getNext();
         for (AppLabelBean<IntentBean> labelBean : mCurrentLabelBeanList) {
-            mDatas.add(labelBean.getTag());
+            mData.add(labelBean.getTag());
         }
     }
 

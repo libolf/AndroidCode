@@ -2,16 +2,27 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/toolbar_layout"
+    android:id="@+id/toolbar_back_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_gradient_toolbar"
     android:fitsSystemWindows="true"
     android:minHeight="?actionBarSize"
+    app:contentInsetStart="0dp"
     app:title="">
 
+    <ImageView
+        android:id="@+id/toolbar_back_image"
+        android:layout_width="?actionBarSize"
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="start|center_vertical"
+        android:background="?attr/selectableItemBackground"
+        android:contentDescription="@null"
+        android:padding="18dp"
+        android:src="@drawable/btn_activity_back" />
+
     <TextView
-        android:id="@+id/toolbar_title_text"
+        android:id="@+id/toolbar_back_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 读取联系人 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!--网络-->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -30,7 +31,7 @@
             android:exported="true" />
 
         <service
-            android:name=".service.TestService"
+            android:name=".service.BaskTaskService"
             android:enabled="true"
             android:exported="true" />
         <service
@@ -52,9 +53,9 @@
             android:name=".activity.MainActivity"
             android:label="Activity/ABC/MainActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
@@ -63,45 +64,45 @@
             android:theme="@style/NoWindowTitle"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.AnimationActivity"
             android:label="Activity/DE/AnimationActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.GifActivity"
             android:label="Activity/DE/GifActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.MVPActivity"
             android:label="Activitys/MVPActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.QueueWriteActivity"
             android:label="QueueWriteActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
@@ -109,9 +110,9 @@
             android:label="DialogActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
@@ -119,9 +120,9 @@
             android:label="LifecycleActivity"
             android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
@@ -129,63 +130,63 @@
             android:label="SkipActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.ContentProviderActivity"
             android:label="ContentProviderActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.QRCodeActivity"
             android:label="QRCodeActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.ConstraintLayoutActivity"
             android:label="ConstraintLayoutActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.SocketActivity"
             android:label="SocketActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.RevealEffectActivity"
             android:label="RevealEffectActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.MemoryActivity"
             android:label="MemoryActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.Memory1Activity" />
@@ -194,9 +195,9 @@
             android:name=".activity.FragmentActivity"
             android:label="FragmentActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
 
@@ -218,26 +219,45 @@
             android:name=".activity.SkinActivity"
             android:label="SkinActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.ThemeActivity"
             android:label="ThemeActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NotificationActivity"
+        <activity
+            android:name=".activity.NotificationActivity"
             android:label="NotificationActivity">
             <intent-filter>
-                <action android:name="AndroidCode" />
+                <action android:name="com.libok.androidcode.action.activity.tree" />
 
-                <category android:name="code" />
+                <category android:name="com.libok.androidcode.category.activity.tree" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SplashActivity"
+            android:label="SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="com.libok.androidcode.action.activity.tree" />
+
+                <category android:name="com.libok.androidcode.category.activity.tree" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.IntentActivity"
+            android:label="IntentActivity">
+            <intent-filter>
+                <action android:name="com.libok.androidcode.action.activity.tree" />
+
+                <category android:name="com.libok.androidcode.category.activity.tree" />
             </intent-filter>
         </activity>
     </application>

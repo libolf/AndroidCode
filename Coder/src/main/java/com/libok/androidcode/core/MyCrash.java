@@ -101,7 +101,7 @@ public class MyCrash implements Thread.UncaughtExceptionHandler {
         if (throwable == null) {
             return false;
         }
-        LApplication.finishActivity();
+        LApplication.finishAllActivity();
         return true;
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -58,5 +59,24 @@ public class LoadingView extends View {
         mWidth = getWidth();
         mHeight = getHeight();
         mCenterPoitnF.set(mWidth / 2F, mHeight / 2F);
+    }
+
+    /**
+     * View意外销毁时保存状态
+     * @return
+     */
+    @Nullable
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        return super.onSaveInstanceState();
+    }
+
+    /**
+     * View恢复时恢复以前的状态
+     * @param state
+     */
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        super.onRestoreInstanceState(state);
     }
 }

@@ -10,6 +10,8 @@ public final class Constants {
 
     public static class ActivityConst {
 
+        public static final String ACTIVITY_CUSTOM_ACTION = "com.libok.androidcode.action.activity.tree";
+        public static final String ACTIVITY_CUSTOM_CATEGORY = "com.libok.androidcode.category.activity.tree";
 
     }
 

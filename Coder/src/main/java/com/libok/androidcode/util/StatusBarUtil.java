@@ -33,6 +33,8 @@ public class StatusBarUtil {
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             decorView.setSystemUiVisibility(option);
             activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
 
@@ -60,9 +62,8 @@ public class StatusBarUtil {
      * 沉浸化，状态栏和导航栏只有在主动滑动时才会出现，并在一定时间自动消失，适合启动图、导航页、图片查看页
      *
      * @param activity 获取Window
-     * @param topToolbar
      */
-    public static void immerseAll(Activity activity, Toolbar topToolbar) {
+    public static void immerseAll(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             View decorView = activity.getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_STABLE

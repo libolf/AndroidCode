@@ -35,7 +35,13 @@ public class LApplication extends Application {
         mActivityList.add(activity);
     }
 
-    public static void finishActivity() {
+    public static void removeActivity(Activity activity) {
+        if (mActivityList.contains(activity)) {
+            mActivityList.remove(activity);
+        }
+    }
+
+    public static void finishAllActivity() {
         for (Activity activity : mActivityList) {
             activity.finish();
         }
