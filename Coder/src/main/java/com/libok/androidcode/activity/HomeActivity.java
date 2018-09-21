@@ -51,6 +51,11 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
     }
 
     @Override
+    protected int setActivityAnim() {
+        return 0;
+    }
+
+    @Override
     protected void initView() {
         ButterKnife.bind(this);
     }

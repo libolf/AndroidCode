@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.libok.androidcode.R;
+import com.libok.androidcode.util.Constants;
 import com.libok.androidcode.util.StatusBarUtil;
 
 /**
@@ -20,11 +21,19 @@ import com.libok.androidcode.util.StatusBarUtil;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+    protected static final int ACTIVITY_ANIM_TRANSLATE = 1;
+    protected static final int ACTIVITY_ANIM_SCALE = 2;
+    protected static final int ACTIVITY_ANIM_WX = 3;
+    protected static int ACTIVITY_ANIM = ACTIVITY_ANIM_SCALE;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setContentViewId());
         addActivityToList();
+        if (setActivityAnim() >= 1 && setActivityAnim() <= 3) {
+            ACTIVITY_ANIM = setActivityAnim();
+        }
 
         // 先判断是否是没有返回键的ToolBar
         Toolbar toolbar = findViewById(R.id.toolbar_layout);
@@ -58,7 +67,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     public void onClick(View v) {
 //                        ToastUtils.showToast(BaseActivity.this, "退回", Toast.LENGTH_SHORT);
                         onBackPressed();
-                        overridePendingTransition(R.anim.anim_activity_back_translate_enter, R.anim.anim_activity_back_translate_exit);
+                        activityBack();
                     }
                 });
             }
@@ -71,10 +80,52 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 为退出Activity添加动画
+     */
+    private void activityBack() {
+        int[] anim = null;
+        switch (ACTIVITY_ANIM) {
+            case ACTIVITY_ANIM_TRANSLATE:
+                anim = Constants.ActivityConst.ACTIVITY_ANIM_TRANSLATE_BACK;
+                break;
+            case ACTIVITY_ANIM_SCALE:
+                anim = Constants.ActivityConst.ACTIVITY_ANIM_SCALE_BACK;
+                break;
+            case ACTIVITY_ANIM_WX:
+                anim = Constants.ActivityConst.ACTIVITY_ANIM_WX_BACK;
+                break;
+        }
+        if (anim != null) {
+            overridePendingTransition(anim[0], anim[1]);
+        }
+    }
+
+    /**
+     * 为进入Activity添加动画
+     */
+    private void activityGo() {
+        int[] anim = null;
+        switch (ACTIVITY_ANIM) {
+            case ACTIVITY_ANIM_TRANSLATE:
+                anim = Constants.ActivityConst.ACTIVITY_ANIM_TRANSLATE_GO;
+                break;
+            case ACTIVITY_ANIM_SCALE:
+                anim = Constants.ActivityConst.ACTIVITY_ANIM_SCALE_GO;
+                break;
+            case ACTIVITY_ANIM_WX:
+                anim = Constants.ActivityConst.ACTIVITY_ANIM_WX_GO;
+                break;
+        }
+        if (anim != null) {
+            overridePendingTransition(anim[0], anim[1]);
+        }
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.anim_activity_back_translate_enter, R.anim.anim_activity_back_translate_exit);
+        activityBack();
     }
 
     @Override
@@ -93,6 +144,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @return 设置ToolBar Title
      */
     protected abstract String setActivityTitle();
+
+    /**
+     * @return 设置Activity动画
+     */
+    protected abstract int setActivityAnim();
 
     /**
      * 初始化控件
@@ -123,8 +179,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void startAnimationActivity(Intent intent) {
         startActivity(intent);
-        overridePendingTransition(R.anim.anim_activity_go_translate_enter, R.anim.anim_activity_go_translate_exit);
-//      overridePendingTransition(R.anim.anim_activity_go_scale_enter, R.anim.anim_activity_go_scale_exit);
+        activityGo();
     }
 
 }

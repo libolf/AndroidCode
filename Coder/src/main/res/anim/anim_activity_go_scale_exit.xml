@@ -10,8 +10,4 @@
         android:toXScale="100%"
         android:toYScale="100%" />
 
-    <alpha
-        android:fromAlpha="0.75"
-        android:toAlpha="1" />
-
 </set>

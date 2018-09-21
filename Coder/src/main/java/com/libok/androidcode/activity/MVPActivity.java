@@ -27,6 +27,11 @@ public class MVPActivity extends BaseActivity implements IBaseView {
     }
 
     @Override
+    protected int setActivityAnim() {
+        return 0;
+    }
+
+    @Override
     protected void initView() {
         mPresenter = new MvpPresenter();
         mPresenter.attachView(this);

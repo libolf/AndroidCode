@@ -19,6 +19,46 @@ public class IntentActivity extends BaseActivity {
     Button mIntentCreateChooserButton;
 
     @Override
+    protected int setContentViewId() {
+        return R.layout.activity_intent;
+    }
+
+    @Override
+    protected String setActivityTitle() {
+        return "Intent";
+    }
+
+    @Override
+    protected int setActivityAnim() {
+        return 0;
+    }
+
+    @Override
+    protected void initView() {
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void restoreInstanceState(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void addActivityToList() {
+        LApplication.addActivity(this);
+    }
+
+    @Override
+    protected void removeActivityForList() {
+        LApplication.removeActivity(this);
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
@@ -61,40 +101,5 @@ public class IntentActivity extends BaseActivity {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-    }
-
-    @Override
-    protected int setContentViewId() {
-        return R.layout.activity_intent;
-    }
-
-    @Override
-    protected String setActivityTitle() {
-        return "Intent";
-    }
-
-    @Override
-    protected void initView() {
-        ButterKnife.bind(this);
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    protected void restoreInstanceState(Bundle savedInstanceState) {
-
-    }
-
-    @Override
-    protected void addActivityToList() {
-        LApplication.addActivity(this);
-    }
-
-    @Override
-    protected void removeActivityForList() {
-        LApplication.removeActivity(this);
     }
 }

@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.view.View;
@@ -31,7 +32,22 @@ public class NotificationActivity extends BaseActivity {
     Button mNotificationCancelButton;
     private NotificationManager mNotificationManager;
 
-    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private int progress = 0;
+
+    private Handler mHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 1) {
+                progress += 5;
+                if (progress <= 100) {
+                    showProgressNotification(progress);
+                    sendEmptyMessageDelayed(1, 2000);
+                } else {
+                    removeMessages(1);
+                }
+            }
+        }
+    };
 
     @Override
     protected int setContentViewId() {
@@ -41,6 +57,11 @@ public class NotificationActivity extends BaseActivity {
     @Override
     protected String setActivityTitle() {
         return "通知栏";
+    }
+
+    @Override
+    protected int setActivityAnim() {
+        return 0;
     }
 
     @Override
@@ -76,7 +97,8 @@ public class NotificationActivity extends BaseActivity {
             case R.id.notification_show_button:
 //                showNotification();
 //                showNotification1();
-                showSimpleNotification();
+//                showSimpleNotification();
+                mHandler.sendEmptyMessage(1);
                 break;
             case R.id.notification_show_hint_button:
                 showNotificationAndHint();
@@ -85,6 +107,20 @@ public class NotificationActivity extends BaseActivity {
                 cancelNotification();
                 break;
         }
+    }
+
+    /**
+     * 带进度的下载通知
+     *
+     * @param progress 进度
+     */
+    private void showProgressNotification(int progress) {
+        Notification.Builder builder = new Notification.Builder(this);
+        builder.setSmallIcon(R.drawable.ic_launcher);
+        builder.setContentTitle("更新最新版本");
+        builder.setContentText("下载进度:" + progress);
+        builder.setProgress(100, progress, false);
+        mNotificationManager.notify(89, builder.build());
     }
 
     private void cancelNotification() {

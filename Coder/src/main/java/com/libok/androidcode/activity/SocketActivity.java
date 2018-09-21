@@ -54,6 +54,11 @@ public class SocketActivity extends BaseActivity {
     }
 
     @Override
+    protected int setActivityAnim() {
+        return 0;
+    }
+
+    @Override
     protected void initView() {
 
     }

@@ -5,11 +5,11 @@
     android:shareInterpolator="true">
 
     <translate
-        android:fromXDelta="0%"
-        android:toXDelta="100%" />
+        android:fromXDelta="100%"
+        android:toXDelta="0" />
 
     <alpha
-        android:fromAlpha="1"
-        android:toAlpha="0.75" />
+        android:fromAlpha="0.9"
+        android:toAlpha="1" />
 
 </set>

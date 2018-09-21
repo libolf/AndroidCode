@@ -143,6 +143,11 @@ public class QRCodeActivity extends BaseActivity {
     }
 
     @Override
+    protected int setActivityAnim() {
+        return 0;
+    }
+
+    @Override
     protected void initView() {
         ButterKnife.bind(this);
     }

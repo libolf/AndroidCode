@@ -90,6 +90,11 @@ public class LifecycleActivity extends BaseActivity {
     }
 
     @Override
+    protected int setActivityAnim() {
+        return 0;
+    }
+
+    @Override
     protected void initView() {
         StatusBarUtil.immerseAll(this);
         ButterKnife.bind(this);

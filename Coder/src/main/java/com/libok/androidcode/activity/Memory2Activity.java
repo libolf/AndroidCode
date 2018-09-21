@@ -18,6 +18,11 @@ public class Memory2Activity extends BaseActivity {
     }
 
     @Override
+    protected int setActivityAnim() {
+        return 0;
+    }
+
+    @Override
     protected void initView() {
 
     }
