@@ -79,6 +79,7 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
             String[] split1 = label.split("/");
             String path = "";
             for (int i = 0; i < split1.length; i++) {
+                Log.e(TAG, "initData: " + split1[i] + " " + split1.length);
                 path += split1[i] + "/";
                 AppLabelBean<IntentBean> appLabelBean = new AppLabelBean<>(null, split1[i], path, (i + 1), null);
                 if (i == split1.length - 1) {
@@ -134,6 +135,7 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
         if (appLabelBean.getNext() == null) {
             IntentBean intentBean = appLabelBean.getData();
             Intent intent = componentIntent(intentBean.getPackageName(), intentBean.getClassName());
+            Log.e(TAG, "onItemClick: " + intentBean.getPackageName() + " " + intentBean.getClassName());
             startAnimationActivity(intent);
             getLabelTagAgain(appLabelBean.getParent());
         } else {
@@ -157,7 +159,7 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
 
     @Override
     public void onBackPressed() {
-        Log.i(TAG, "onBackPressed: " + mCurrentLabelBeanList.size() + " " + mCurrentLabelBeanList.get(0).toString());
+//        Log.i(TAG, "onBackPressed: " + mCurrentLabelBeanList.size() + " " + mCurrentLabelBeanList.get(0).toString());
         if (mCurrentLabelBeanList.size() > 0 && mCurrentLabelBeanList.get(0).getParent().getParent() != null) {
             getLabelTagAgain(mCurrentLabelBeanList.get(0).getParent().getParent());
         } else {

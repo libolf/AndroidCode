@@ -4,24 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_back_layout" />
-
     <Button
-        android:id="@+id/lifecycle_dialog_activity_button"
+        android:id="@+id/fingerprint_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dialog ACtivity" />
+        android:text="普通dialog"/>
 
     <Button
-        android:id="@+id/lifecycle_dialog_button"
+        android:id="@+id/fingerprint_fragment_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dialog" />
-
-    <Button
-        android:id="@+id/lifecycle_skip_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Skip" />
+        android:text="FragmentDialog"/>
 
 </LinearLayout>

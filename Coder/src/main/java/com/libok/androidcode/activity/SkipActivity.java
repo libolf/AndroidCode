@@ -1,5 +1,6 @@
 package com.libok.androidcode.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -15,6 +16,9 @@ import butterknife.OnClick;
 public class SkipActivity extends BaseActivity {
 
     private static final String TAG = "SkipActivity";
+
+    public static final String EXTRA_KEY = "abcd";
+
     @BindView(R.id.skip_text)
     TextView mSkipText;
     @BindView(R.id.skip_text_change)
@@ -64,6 +68,7 @@ public class SkipActivity extends BaseActivity {
 
     @OnClick(R.id.skip_text_change)
     public void onViewClicked() {
+        startAnimationActivity(new Intent(this, LifecycleActivity.class).putExtra(EXTRA_KEY, "qwer"));
 //        CollapsingTextHelper
 //        try {
 //            Class cl = Class.forName("android.support.design.widget.CollapsingTextHelper");

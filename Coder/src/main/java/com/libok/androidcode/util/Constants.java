@@ -22,6 +22,13 @@ public final class Constants {
         public static final int[] ACTIVITY_ANIM_WX_GO = {R.anim.anim_activity_go_wx_enter, R.anim.anim_activity_go_wx_exit};
         public static final int[] ACTIVITY_ANIM_WX_BACK = {R.anim.anim_activity_back_wx_enter, R.anim.anim_activity_back_wx_exit};
 
+        public static final String ACTIVITY_LIFECYCLE_TITLE = "Activity生命周期";
+
+    }
+
+    public static class FragmentConst{
+        public static final String FRAGMENT_KEY_DIALOG_TITLE = "dialog_title";
+        public static final String FRAGMENT_KEY_DIALOG_MESSAGE = "dialog_message";
     }
 
     public static class ServiceConst {

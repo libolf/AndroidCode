@@ -3,82 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/bg_dialog">
 
     <TextView
-        android:id="@+id/dialog_universal_title_text"
-        android:layout_width="wrap_content"
+        android:id="@+id/fragment_dialog_title_text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="15dp"
+        android:gravity="center"
         android:paddingTop="15dp"
         android:textColor="#FF4C81FD"
-        android:textSize="17sp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/fragment_dialog_message_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="连接失败" />
+        tools:text="标题" />
 
     <TextView
-        android:id="@+id/dialog_universal_message_text"
-        android:layout_width="wrap_content"
+        android:id="@+id/fragment_dialog_message_text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="25dp"
+        android:gravity="center"
+        android:paddingBottom="15dp"
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
+        android:paddingTop="15dp"
         android:textColor="#FF303033"
-        android:textSize="15sp"
+        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dialog_universal_title_text"
-        tools:text="挖币中，无法启动VPN，是否停止挖币挖币中，无法启动VPN，是否停止挖币" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_dialog_title_text"
+        tools:text="MessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessage" />
 
     <View
-        android:id="@+id/dialog_universal_divider"
+        android:id="@+id/fragment_dialog_divider"
         android:layout_width="0dp"
         android:layout_height="0.5dp"
         android:background="#FFE5E5EA"
-        app:layout_constraintBottom_toTopOf="@id/dialog_universal_negative_button"
+        app:layout_constraintBottom_toTopOf="@id/fragment_dialog_negative_button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dialog_universal_message_text" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_dialog_message_text" />
 
     <Button
-        android:id="@+id/dialog_universal_negative_button"
+        android:id="@+id/fragment_dialog_negative_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:paddingBottom="13dp"
         android:paddingTop="14dp"
+        android:text="@string/fragment_dialog_negative_button_text"
         android:textColor="#FFB0B0B9"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/dialog_universal_line"
-        app:layout_constraintTop_toBottomOf="@id/dialog_universal_divider"
+        app:layout_constraintRight_toLeftOf="@id/fragment_dialog_line"
+        app:layout_constraintTop_toBottomOf="@id/fragment_dialog_divider"
         tools:text="取消" />
 
     <View
-        android:id="@+id/dialog_universal_line"
+        android:id="@+id/fragment_dialog_line"
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:background="#FFE5E5EA"
-        app:layout_constraintBottom_toBottomOf="@id/dialog_universal_negative_button"
-        app:layout_constraintLeft_toRightOf="@id/dialog_universal_negative_button"
-        app:layout_constraintRight_toLeftOf="@id/dialog_universal_positive_button"
-        app:layout_constraintTop_toBottomOf="@id/dialog_universal_divider" />
+        app:layout_constraintBottom_toBottomOf="@id/fragment_dialog_negative_button"
+        app:layout_constraintLeft_toRightOf="@id/fragment_dialog_negative_button"
+        app:layout_constraintRight_toLeftOf="@id/fragment_dialog_positive_button"
+        app:layout_constraintTop_toBottomOf="@id/fragment_dialog_divider" />
 
     <Button
-        android:id="@+id/dialog_universal_positive_button"
+        android:id="@+id/fragment_dialog_positive_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:paddingBottom="13dp"
         android:paddingTop="14dp"
+        android:text="@string/fragment_dialog_positive_button_text"
         android:textColor="#FF4C81FD"
         android:textSize="16sp"
-        app:layout_constraintLeft_toRightOf="@id/dialog_universal_line"
+        app:layout_constraintLeft_toRightOf="@id/fragment_dialog_line"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dialog_universal_divider"
-        tools:text="确认" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_dialog_divider"
+        tools:text="确定" />
 
 </android.support.constraint.ConstraintLayout>

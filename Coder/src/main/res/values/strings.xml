@@ -9,4 +9,6 @@
     <string name="animation_translate">位移</string>
     <string name="animation_custom">自定义动画</string>
     <string name="animation_special_animator">特殊的属性动画</string>
+    <string name="fragment_dialog_negative_button_text">取消</string>
+    <string name="fragment_dialog_positive_button_text">确定</string>
 </resources>
